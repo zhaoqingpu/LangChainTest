@@ -149,7 +149,6 @@ def main():
 
     if does_vectorstore_exist(persist_directory):
         # Update and store locally vectorstore
-        print(f"Appending to existing vectorstore at {persist_directory}")
         db = Chroma(persist_directory=persist_directory, embedding_function=embeddings, client_settings=CHROMA_SETTINGS)
         collection = db.get()
         texts = process_documents([metadata['source'] for metadata in collection['metadatas']])
@@ -168,4 +167,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+
+    embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
+    db = Chroma(persist_directory=persist_directory, embedding_function=embeddings, client_settings=CHROMA_SETTINGS)
+    print(db.similarity_search("怎么增强体质"))
