@@ -1,0 +1,5 @@
+chromadb==0.3.25
+langchain==0.0.278
+Requests==2.31.0
+torch==2.0.1+cu118
+tqdm==4.65.0
